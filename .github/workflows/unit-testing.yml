@@ -1,0 +1,33 @@
+name: Unit testing
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: 1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: "^1.13.1"
+      - name: Unit tests
+        run: go test -coverprofile=coverage.out ./...
+      - name: Coverage
+        run: |
+          COVERAGE=$(go tool cover -func coverage.out | grep total | awk '{print $3}')
+          echo "COVERAGE=$COVERAGE" >> $GITHUB_ENV
+      - name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.CODE_COVERAGE_BADGE }}
+          gistID: 3a5c748549f6b183663570197f3a7d97
+          filename: golang-rest-api-coverage.json
+          label: Test Coverage
+          message: ${{ env.COVERAGE }}%
+          color: green
