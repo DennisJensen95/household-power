@@ -13,15 +13,5 @@ jobs:
       FORCE_COLOR: 1
     steps:
       - uses: actions/checkout@v3
-      - name: Download latest earthly
-        run: "sudo /bin/sh -c 'wget https://github.com/earthly/earthly/releases/download/v0.6.14/earthly-linux-amd64 -O /usr/local/bin/earthly && chmod +x /usr/local/bin/earthly'"
-      - name: Earthly version
-        run: earthly --version
-      - name: Run build
-        run: earthly --ci --output +build
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: Application binary
-          path: |
-            ./bin/app
+      - name: Build household-power application
+        run: 'echo "Build household-power application"'
