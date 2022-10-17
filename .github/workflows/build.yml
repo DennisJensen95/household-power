@@ -13,5 +13,7 @@ jobs:
       FORCE_COLOR: 1
     steps:
       - uses: actions/checkout@v3
-      - name: Build household-power application
-        run: 'echo "Build household-power application"'
+      - uses: cachix/install-nix-action@v18
+        with:
+          nix_path: nixpkgs=channel:nixos-22.05
+      - run: nix build
