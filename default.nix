@@ -11,12 +11,10 @@
   )
 }:
 
-let
-  goEnv = pkgs.mkGoEnv { pwd = ./.; };
-in
-pkgs.mkShell {
-  packages = [
-    goEnv
-    pkgs.gomod2nix
-  ];
+pkgs.buildGoApplication {
+  pname = "myapp";
+  version = "0.1";
+  pwd = ./.;
+  src = ./.;
+  modules = ./gomod2nix.toml;
 }
