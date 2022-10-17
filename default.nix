@@ -12,7 +12,7 @@
 }:
 
 pkgs.buildGoApplication {
-  pname = "myapp";
+  pname = "household-power";
   version = "0.1";
   pwd = ./.;
   src = ./.;
