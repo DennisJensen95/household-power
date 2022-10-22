@@ -1,0 +1,68 @@
+{
+    "result": [
+        {
+            "MyEnergyData_MarketDocument": {
+                "mRID": "80002233-0000-9300-b63f-84710c7967bb",
+                "createdDateTime": "2022-10-22T10: 04: 41Z",
+                "sender_MarketParticipant.name": "",
+                "sender_MarketParticipant.mRID": {
+                    "codingScheme": null,
+                    "name": null
+                },
+                "period.timeInterval": {
+                    "start": "2022-08-31T22: 00: 00Z",
+                    "end": "2022-09-30T22: 00: 00Z"
+                },
+                "TimeSeries": [
+                    {
+                        "mRID": "571313179100450919",
+                        "businessType": "A04",
+                        "curveType": "A01",
+                        "measurement_Unit.name": "KWH",
+                        "MarketEvaluationPoint": {
+                            "mRID": {
+                                "codingScheme": "A10",
+                                "name": "571313179100450919"
+                            }
+                        },
+                        "Period": [
+                            {
+                                "resolution": "P1M",
+                                "timeInterval": {
+                                    "start": "2022-08-31T22: 00: 00Z",
+                                    "end": "2022-09-30T22: 00: 00Z"
+                                },
+                                "Point": [
+                                    {
+                                        "position": "1",
+                                        "out_Quantity.quantity": "145",
+                                        "out_Quantity.quality": "A04"
+                                    }
+                                ]
+                            },
+                            {
+                                "resolution": "P1M",
+                                "timeInterval": {
+                                    "start": "2022-08-31T22: 00: 00Z",
+                                    "end": "2022-09-30T22: 00: 00Z"
+                                },
+                                "Point": [
+                                    {
+                                        "position": "1",
+                                        "out_Quantity.quantity": "5",
+                                        "out_Quantity.quality": "A04"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "success": true,
+            "errorCode": 10000,
+            "errorText": "NoError",
+            "id": "571313179100450919",
+            "stackTrace": null
+        }
+    ]
+}
