@@ -3,9 +3,14 @@
 ![example workflow](https://github.com/DennisJensen95/household-power/actions/workflows/build.yml/badge.svg)
 ![Code coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/DennisJensen95/2b7862c80c14d562c8659e1283543190/raw/household-power-coverage.json)
 
-Power consumption prices are crazy. Therefore, be more knowledgable for you
-consumation Calculate the price of your power usage if you are paying by the
-hour vs the fixed price you might give.
+Power consumption prices are crazy. Therefore, I made this tool to identify if
+you would be better off using a variable price arrangement paying hour by hour
+prices for your energy. It is hard to figure out, when looking at Energy vendors
+apps if it is financilly a benefit to have a variable paying arrangement. 
+
+This tool calculates what you would pay if you had a variable arrangement vs
+fixed price. You must provide a period of interest, a fixed price and transport
+cost of the energy per kWh in DKK. 
 
 ## Usage 
 
@@ -14,7 +19,7 @@ variable power cost vs fixed price.
 
 First you need a token from https://eloverblik.dk/welcome. You can generate one
 there by logging in with MitID and then replacing `TokenElOverblik` with the
-generated token.
+generated token and also changing the `meteringPointId` to your metering point.
 
 ```bash
 go build && ./household-power -token TokenForElOverblik -meteringPointId 132813343 -start-date 2022-10-01 -en
@@ -25,4 +30,5 @@ INFO[0000] Power used                                    Money spend with fixed 
 ```
 
 This can save you a lot of money if you are running with a high fixed price and
-not using power in the busy hours. 
+not using power in the busy hours. As you can see above I can save 500 DKK per
+month with a variable price arrangement.
