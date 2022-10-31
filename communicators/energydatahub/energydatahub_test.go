@@ -6,7 +6,9 @@ import (
 	"os"
 	"strings"
 	"testing"
+	"time"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -24,7 +26,7 @@ func NewTestClient(fn RoundTripFunc) EnergyDatahubCommunicator {
 		Client: &http.Client{
 			Transport: RoundTripFunc(fn),
 		},
-		base_url: "https://api.energidataservice.dk",
+		BaseUrl: "https://api.energidataservice.dk",
 	}
 }
 
@@ -43,10 +45,13 @@ func TestFetchDataPricePerHour(t *testing.T) {
 	start_date := "2022-10-24"
 	end_date := "2022-10-25"
 
+	start_date, _ = AddDaysToTimeString(start_date, -1)
+	end_date, _ = AddDaysToTimeString(end_date, 1)
+
 	datahubCommunicator := NewTestClient(func(req *http.Request) *http.Response {
 		// Test request parameters
 
-		assert.Equal(t, req.URL.String(), "https://api.energidataservice.dk/dataset/Elspotprices?offset=0&start="+start_date+"&end="+end_date+"T00:00&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk")
+		assert.Equal(t, req.URL.String(), "https://api.energidataservice.dk/dataset/Elspotprices?offset=0&start="+start_date+"&end="+end_date+"&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk")
 		return &http.Response{
 			StatusCode: 200,
 			// Send response to be tested
@@ -56,7 +61,7 @@ func TestFetchDataPricePerHour(t *testing.T) {
 		}
 	})
 
-	price_data, err := datahubCommunicator.FetchDataPricePerHour(start_date, end_date)
+	price_data, err := datahubCommunicator.FetchDataPrice(start_date, end_date)
 
 	assert.Nil(t, err)
 	assert.Equal(t, price_data.Records[0].PriceArea, "DK2")
@@ -66,7 +71,7 @@ func TestFetchDataPricePerHour(t *testing.T) {
 	datahubCommunicator = NewTestClient(func(req *http.Request) *http.Response {
 		// Test request parameters
 
-		assert.Equal(t, req.URL.String(), "https://api.energidataservice.dk/dataset/Elspotprices?offset=0&start="+start_date+"&end="+end_date+"T00:00&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk")
+		assert.Equal(t, req.URL.String(), "https://api.energidataservice.dk/dataset/Elspotprices?offset=0&start="+start_date+"&end="+end_date+"&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk")
 		return &http.Response{
 			StatusCode: 500,
 			// Send response to be tested
@@ -75,8 +80,40 @@ func TestFetchDataPricePerHour(t *testing.T) {
 			Header: make(http.Header),
 		}
 	})
-	price_data, err = datahubCommunicator.FetchDataPricePerHour(start_date, end_date)
+	price_data, err = datahubCommunicator.FetchDataPrice(start_date, end_date)
 
 	assert.NotNil(t, err)
-	assert.Equal(t, price_data.Total, 0)
+	assert.Equal(t, len(price_data.Records), 0)
+}
+
+func parseDateFromEnergyDataHub(date string) (time.Time, error) {
+	return time.Parse("2006-01-02", date)
+}
+
+// Not executed unless integration tests are called
+func IntegrationTestFetchingPriceData(t *testing.T) {
+	communicator := EnergyDatahubCommunicator{
+		BaseUrl: "https://api.energidataservice.dk",
+		Client:  &http.Client{},
+	}
+
+	start_date := "2022-09-01"
+	end_date := "2022-09-30"
+	data, err := communicator.FetchDataPrice(start_date, end_date)
+	assert.Nil(t, err)
+
+	log.Info("Total number of records: ", len(data.Records))
+
+	start_date_time, _ := parseDateFromEnergyDataHub(start_date)
+	end_date_time, _ := parseDateFromEnergyDataHub(end_date)
+
+	total_hours := end_date_time.Sub(start_date_time).Hours()
+
+	assert.Nil(t, err)
+	assert.Equalf(t, 24*29, int(total_hours), "Total hours should be %f, but was %d", total_hours, 24*29)
+
+	// Add two days as the fetch adds buffer in price data fetch on a day on each side.
+	assert.Equalf(t, int(total_hours), len(data.Records), "There should be the same number of hours %f as price data points %d", total_hours, len(data.Records))
+
+	log.Info(len(data.Records))
 }

@@ -1,0 +1,427 @@
+{
+    "result": [
+        {
+            "MyEnergyData_MarketDocument": {
+                "mRID": "80007860-0002-f100-b63f-84710c7967bb",
+                "createdDateTime": "2022-10-30T03:59:39Z",
+                "sender_MarketParticipant.name": "",
+                "sender_MarketParticipant.mRID": {
+                    "codingScheme": null,
+                    "name": null
+                },
+                "period.timeInterval": {
+                    "start": "2022-10-21T22:00:00Z",
+                    "end": "2022-10-24T22:00:00Z"
+                },
+                "TimeSeries": [
+                    {
+                        "mRID": "571313179100450919",
+                        "businessType": "A04",
+                        "curveType": "A01",
+                        "measurement_Unit.name": "KWH",
+                        "MarketEvaluationPoint": {
+                            "mRID": {
+                                "codingScheme": "A10",
+                                "name": "571313179100450919"
+                            }
+                        },
+                        "Period": [
+                            {
+                                "resolution": "PT1H",
+                                "timeInterval": {
+                                    "start": "2022-10-21T22:00:00Z",
+                                    "end": "2022-10-22T22:00:00Z"
+                                },
+                                "Point": [
+                                    {
+                                        "position": "1",
+                                        "out_Quantity.quantity": "0.25",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "2",
+                                        "out_Quantity.quantity": "0.52",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "3",
+                                        "out_Quantity.quantity": "0.5",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "4",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "5",
+                                        "out_Quantity.quantity": "0.09",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "6",
+                                        "out_Quantity.quantity": "0.16",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "7",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "8",
+                                        "out_Quantity.quantity": "0.13",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "9",
+                                        "out_Quantity.quantity": "0.14",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "10",
+                                        "out_Quantity.quantity": "0.11",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "11",
+                                        "out_Quantity.quantity": "0.22",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "12",
+                                        "out_Quantity.quantity": "0.27",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "13",
+                                        "out_Quantity.quantity": "0.46",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "14",
+                                        "out_Quantity.quantity": "0.42",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "15",
+                                        "out_Quantity.quantity": "0.31",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "16",
+                                        "out_Quantity.quantity": "0.28",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "17",
+                                        "out_Quantity.quantity": "0.22",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "18",
+                                        "out_Quantity.quantity": "0.25",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "19",
+                                        "out_Quantity.quantity": "0.16",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "20",
+                                        "out_Quantity.quantity": "0.09",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "21",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "22",
+                                        "out_Quantity.quantity": "0.12",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "23",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "24",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    }
+                                ]
+                            },
+                            {
+                                "resolution": "PT1H",
+                                "timeInterval": {
+                                    "start": "2022-10-22T22:00:00Z",
+                                    "end": "2022-10-23T22:00:00Z"
+                                },
+                                "Point": [
+                                    {
+                                        "position": "1",
+                                        "out_Quantity.quantity": "0.12",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "2",
+                                        "out_Quantity.quantity": "0.17",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "3",
+                                        "out_Quantity.quantity": "0.2",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "4",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "5",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "6",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "7",
+                                        "out_Quantity.quantity": "0.13",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "8",
+                                        "out_Quantity.quantity": "0.13",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "9",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "10",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "11",
+                                        "out_Quantity.quantity": "0.43",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "12",
+                                        "out_Quantity.quantity": "0.12",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "13",
+                                        "out_Quantity.quantity": "0.17",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "14",
+                                        "out_Quantity.quantity": "0.11",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "15",
+                                        "out_Quantity.quantity": "0.14",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "16",
+                                        "out_Quantity.quantity": "0.68",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "17",
+                                        "out_Quantity.quantity": "0.16",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "18",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "19",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "20",
+                                        "out_Quantity.quantity": "0.23",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "21",
+                                        "out_Quantity.quantity": "0.25",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "22",
+                                        "out_Quantity.quantity": "0.21",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "23",
+                                        "out_Quantity.quantity": "0.25",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "24",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    }
+                                ]
+                            },
+                            {
+                                "resolution": "PT1H",
+                                "timeInterval": {
+                                    "start": "2022-10-23T22:00:00Z",
+                                    "end": "2022-10-24T22:00:00Z"
+                                },
+                                "Point": [
+                                    {
+                                        "position": "1",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "2",
+                                        "out_Quantity.quantity": "0.1",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "3",
+                                        "out_Quantity.quantity": "0.12",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "4",
+                                        "out_Quantity.quantity": "0.14",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "5",
+                                        "out_Quantity.quantity": "0.08",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "6",
+                                        "out_Quantity.quantity": "0.15",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "7",
+                                        "out_Quantity.quantity": "0.13",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "8",
+                                        "out_Quantity.quantity": "0.41",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "9",
+                                        "out_Quantity.quantity": "0.17",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "10",
+                                        "out_Quantity.quantity": "0.09",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "11",
+                                        "out_Quantity.quantity": "0.16",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "12",
+                                        "out_Quantity.quantity": "0.08",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "13",
+                                        "out_Quantity.quantity": "0.18",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "14",
+                                        "out_Quantity.quantity": "0.09",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "15",
+                                        "out_Quantity.quantity": "0.16",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "16",
+                                        "out_Quantity.quantity": "0.08",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "17",
+                                        "out_Quantity.quantity": "0.14",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "18",
+                                        "out_Quantity.quantity": "0.16",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "19",
+                                        "out_Quantity.quantity": "0.69",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "20",
+                                        "out_Quantity.quantity": "0.3",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "21",
+                                        "out_Quantity.quantity": "0.26",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "22",
+                                        "out_Quantity.quantity": "0.25",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "23",
+                                        "out_Quantity.quantity": "0.19",
+                                        "out_Quantity.quality": "A04"
+                                    },
+                                    {
+                                        "position": "24",
+                                        "out_Quantity.quantity": "0.2",
+                                        "out_Quantity.quality": "A04"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            "success": true,
+            "errorCode": 10000,
+            "errorText": "NoError",
+            "id": "571313179100450919",
+            "stackTrace": null
+        }
+    ]
+}
