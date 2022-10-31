@@ -4,6 +4,9 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type EnergyDatahub interface {
@@ -11,27 +14,37 @@ type EnergyDatahub interface {
 }
 
 type EnergyDatahubCommunicator struct {
-	base_url string
-	Client   *http.Client
+	BaseUrl string
+	Client  *http.Client
 }
 
 type PriceDataRecords struct {
-	Total   int    `json:"total"`
-	Filters string `json:"filters"`
-	Sort    string `json:"sort"`
-	Dataset string `json:"dataset"`
-	Records []struct {
-		HourUTC      string  `json:"HourUTC"`
-		HourDK       string  `json:"HourDK"`
-		PriceArea    string  `json:"PriceArea"`
-		SpotPriceDKK float64 `json:"SpotPriceDKK"`
-		SpotPriceEUR float64 `json:"SpotPriceEUR"`
-	} `json:"records"`
+	Total   int      `json:"total"`
+	Filters string   `json:"filters"`
+	Sort    string   `json:"sort"`
+	Dataset string   `json:"dataset"`
+	Records []Record `json:"records"`
+}
+type Record struct {
+	HourUTC      string  `json:"HourUTC"`
+	HourDK       string  `json:"HourDK"`
+	PriceArea    string  `json:"PriceArea"`
+	SpotPriceDKK float64 `json:"SpotPriceDKK"`
+	SpotPriceEUR float64 `json:"SpotPriceEUR"`
 }
 
-func (communicator EnergyDatahubCommunicator) FetchDataPricePerHour(start_date string, end_date string) (PriceDataRecords, error) {
-	// https://api.energidataservice.dk/dataset/Elspotprices?offset=0&start=2022-10-01T00:00&end=2022-10-27T00:00&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk
-	url := communicator.base_url + "/dataset/Elspotprices?offset=0&start=" + start_date + "&end=" + end_date + "T00:00&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk"
+func AddDaysToTimeString(timeString string, days int) (string, error) {
+	timestamp, err := time.Parse("2006-01-02", timeString)
+	if err != nil {
+		log.WithField("error", err).Error("Failed to parse time string")
+		return "", err
+	}
+	timestamp = timestamp.AddDate(0, 0, days)
+	return timestamp.Format("2006-01-02"), nil
+}
+
+func (communicator EnergyDatahubCommunicator) FetchDataPrice(start_date string, end_date string) (PriceDataRecords, error) {
+	url := communicator.BaseUrl + "/dataset/Elspotprices?offset=0&start=" + start_date + "&end=" + end_date + "&filter=%7B%22PriceArea%22:[%22DK2%22]%7D&sort=HourUTC%20DESC&timezone=dk"
 	req, _ := http.NewRequest("GET", url, nil)
 
 	resp, err := communicator.Client.Do(req)
@@ -44,5 +57,6 @@ func (communicator EnergyDatahubCommunicator) FetchDataPricePerHour(start_date s
 	if err != nil {
 		return PriceDataRecords{}, err
 	}
+
 	return data, nil
 }

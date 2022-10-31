@@ -84,7 +84,7 @@ type ElOverblikCommunicator struct {
 }
 
 // GetToken .
-func (c *ElOverblikCommunicator) getAccessToken(authorization_token string) (string, error) {
+func (c *ElOverblikCommunicator) GetAccessToken(authorization_token string) (string, error) {
 	url := eloverblik_base_api + "/api/Token"
 	req, _ := http.NewRequest("GET", url, nil)
 
@@ -113,7 +113,6 @@ func (c *ElOverblikCommunicator) getAccessToken(authorization_token string) (str
 		}).Error("Error while decoding access token")
 		return "", err
 	}
-
 	return token.AccessToken, nil
 }
 
@@ -136,9 +135,9 @@ func (c *ElOverblikCommunicator) GetTimeSeriesData(token string, metering_point_
 
 	// Send request
 	resp, err := c.Client.Do(req)
-	if err != nil {
+	if err != nil || resp.StatusCode != 200 {
 		log.Error("Error on response.\n[ERROR] -", err)
-		return "", err
+		return "", fmt.Errorf("error while sending GET request for time series data")
 	}
 	defer resp.Body.Close()
 
@@ -153,13 +152,7 @@ func (c *ElOverblikCommunicator) GetTimeSeriesData(token string, metering_point_
 }
 
 // Set the required headers and access token to access the eloverblik API.
-func (c *ElOverblikCommunicator) setupRequestObject(req *http.Request, token string) error {
-	access_token, err := c.getAccessToken(token)
-	if err != nil {
-		log.Error("Unsuccessful getting access token")
-		return err
-	}
-
+func (c *ElOverblikCommunicator) setupRequestObject(req *http.Request, access_token string) error {
 	bearer := "Bearer " + access_token
 
 	req.Header.Set("Authorization", bearer)

@@ -7,7 +7,6 @@ import (
 	"strings"
 	"testing"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -47,7 +46,7 @@ func TestGetToken(t *testing.T) {
 			Header: make(http.Header),
 		}
 	})
-	token, err := elOverblikCommunicator.getAccessToken("testToken")
+	token, err := elOverblikCommunicator.GetAccessToken("testToken")
 	assert.Nil(t, err)
 	assert.Equal(t, token, "testAccessToken")
 
@@ -66,7 +65,7 @@ func TestGetToken(t *testing.T) {
 		}
 	})
 
-	token, err = elOverblikCommunicator.getAccessToken("testToken")
+	token, err = elOverblikCommunicator.GetAccessToken("testToken")
 	assert.NotNil(t, err)
 	assert.Equal(t, token, "")
 
@@ -85,7 +84,7 @@ func TestGetToken(t *testing.T) {
 		}
 	})
 
-	token, err = elOverblikCommunicator.getAccessToken("testToken")
+	token, err = elOverblikCommunicator.GetAccessToken("testToken")
 	assert.NotNil(t, err)
 	assert.Equal(t, token, "")
 }
@@ -105,25 +104,10 @@ func TestGetMeteringPoints(t *testing.T) {
 	start_date := "2020-01-01"
 	end_date := "2020-01-02"
 	metering_point := "testMeteringPointId"
-	calledTimes := 0
 	accessToken := "testAccessToken"
 	testDataFile := "../../tests/test_data/time_series_response.json"
 
 	elOverblikCommunicator := NewTestClient(func(req *http.Request) *http.Response {
-		// Test request parameters
-
-		if calledTimes == 0 {
-			assert.Equal(t, req.URL.String(), "https://api.eloverblik.dk/CustomerApi/api/Token")
-			calledTimes++
-			return &http.Response{
-				StatusCode: 200,
-				// Send response to be tested
-				Body: ioutil.NopCloser(strings.NewReader("{\"result\":\"testAccessToken\"}")),
-				// Must be set to non-nil value or it panics
-				Header: make(http.Header),
-			}
-		}
-
 		assert.Equal(t, req.URL.String(), "https://api.eloverblik.dk/CustomerApi/api/MeterData/GetTimeSeries/"+start_date+"/"+end_date+"/Hour")
 		return &http.Response{
 			StatusCode: 200,
@@ -140,16 +124,13 @@ func TestGetMeteringPoints(t *testing.T) {
 
 	// 2
 	// Error case of getting accessToken
-	calledTimes = 0
 	elOverblikCommunicator2 := NewTestClient(func(req *http.Request) *http.Response {
 		// Test request parameters
-		calledTimes++
-		log.Error(calledTimes)
-		assert.Equal(t, req.URL.String(), "https://api.eloverblik.dk/CustomerApi/api/Token")
+		assert.Equal(t, req.URL.String(), "https://api.eloverblik.dk/CustomerApi/api/MeterData/GetTimeSeries/"+start_date+"/"+end_date+"/Hour")
 		return &http.Response{
 			StatusCode: 500,
 			// Send response to be tested
-			Body: ioutil.NopCloser(strings.NewReader("{\"result\":\"testAccessToken\"")),
+			Body: ioutil.NopCloser(strings.NewReader("{\"result\":\"testAccessToken\"}")),
 			// Must be set to non-nil value or it panics
 			Header: make(http.Header),
 		}
