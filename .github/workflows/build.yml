@@ -17,3 +17,28 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-22.05
       - run: nix build
+  unit-test:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: 1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v18
+        with:
+          nix_path: nixpkgs=channel:nixos-22.05
+      - name: Run unit tests
+        run: nix develop --check
+      - name: Coverage
+        run: |
+          COVERAGE=$(go tool cover -func coverage.out | grep total | awk '{print $3}')
+          echo "COVERAGE=$COVERAGE" >> $GITHUB_ENV
+      - name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.CODE_COVERAGE_BADGE }}
+          gistID: 2b7862c80c14d562c8659e1283543190
+          filename: household-power-coverage.json
+          label: Test Coverage
+          message: ${{ env.COVERAGE }}
+          color: green
+

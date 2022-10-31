@@ -1,5 +1,8 @@
 # household-power
 
+![example workflow](https://github.com/DennisJensen95/household-power/actions/workflows/build.yml/badge.svg)
+![Code coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/DennisJensen95/2b7862c80c14d562c8659e1283543190/raw/household-power-coverage.json)
+
 Power consumption prices are crazy. Therefore, be more knowledgable for you
 consumation Calculate the price of your power usage if you are paying by the
 hour vs the fixed price you might give.
